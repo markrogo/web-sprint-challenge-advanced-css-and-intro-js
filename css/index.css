@@ -148,9 +148,11 @@ button:hover{
         width:80%;
         text-align:center;
     }
+
+   
         nav a {
-            font: size 1.6prem;
-            margin: 0 5%;
+            font: size 1.6rem;
+            margin: 0 10%;
         }
     
         h1{
@@ -161,8 +163,7 @@ button:hover{
 
         .title-container div {
             width: 90%;
-            height: 5
-            0vh;
+            height: 40vh;
         }
 
         .bio {
