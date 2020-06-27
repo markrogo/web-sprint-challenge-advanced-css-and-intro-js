@@ -249,7 +249,7 @@ function get20s(myArray){
     // checks to see if the 2nd and 8th character in the data are both 9s
     // if so, the birth and death date is 20th century
     
-    // These two lines are the debub code
+    // These two lines are the debug code
     //console.log (myYears.charAt(1), myYears.charAt(8));
     // console.log (myArray[i].name);
 
@@ -364,20 +364,35 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
+// function getHTML(data) {
+//     for (each in data) {
+//       let html = (each.name, each.bio, each.wikipedia)
+//       console.log (html);
+    
+      
+   
 
-    /* Code here */
+//   }
+// }
 
-  }
-
+// getHTML (artists);
 
 /* STRETCH 2: Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
+function randomize(input){
+    let randomArray = [];
+    let top = input.length;
+    for (i = 1; i <= top; i++) {
+        let randomTop = (input.length - 1);
+        let grabIndex= Math.floor(Math.random() * Math.floor(randomTop));
+        let artistToSteal = input.splice (grabIndex, 1);
+        randomArray.push (artistToSteal);        
+    }
+    return randomArray;
+  
+}
 
-    /* Code here */
-
-  }
-
+console.log(randomize(arrayCopy));
 
  /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
+
