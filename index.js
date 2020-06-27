@@ -396,3 +396,9 @@ console.log(randomize(arrayCopy));
 
  /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
+function find20thMap(myArray) {
+    var stuff = myArray.filter (modern => ((modern.years.charAt(1) === "9") && (modern.years.charAt(8) === "9")));
+    return stuff
+}
+
+console.log (find20thMap(artists));
