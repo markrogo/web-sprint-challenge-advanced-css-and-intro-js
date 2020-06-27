@@ -201,6 +201,9 @@ const artists = [
     }
 ]
 
+
+arrayCopy = [...artists];
+
 // 🖌🖼 M V P 🖼🖌 //
 
 /* Task 1: Practice accessing data above by console.log-ing following items:
@@ -208,11 +211,15 @@ const artists = [
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
+console.log ('This is the first artist in the array', artists[0].name);
+console.log ('This is the bio of the third artist in the array', artists[2].bio);
+
 
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
-
+artists[8].name = "Vincent Van Gogh";
+console.log ('This is the corrected Van Gogh entry', artists[8].name);
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
  *     (1) artists array
@@ -222,21 +229,41 @@ const artists = [
  * For example, if getArtistByIndex is invoked with the artists dataset and the number 0,
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
-function getArtistByIndex(array, index) {
-    /* code here */
-  }
-  
-  /**
+function getArtistByIndex(myArray, myIndex) {
+  let string = "";
+  string = `The artist at index ${myIndex} is ${myArray[myIndex].name}`;
+  return string
+}
+console.log(getArtistByIndex (artists, 2));
+console.log(getArtistByIndex (artists, 0));
+console.log(getArtistByIndex (artists, 17));
 
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/* Code here */){
+function get20s(myArray){
+  let subset = [];
+  let myYears = "";
+  for (i = 0; i < myArray.length; i++) {
+    myYears = myArray[i].years;
+    // checks to see if the 2nd and 8th character in the data are both 9s
+    // if so, the birth and death date is 20th century
+    
+    // These two lines are the debub code
+    //console.log (myYears.charAt(1), myYears.charAt(8));
+    // console.log (myArray[i].name);
 
-  /* Code here */
+    // here's the if test
+    if ((myYears.charAt(1) === "9") && (myYears.charAt(8) === "9")) {
+     
+      subset.push(myArray[i].name);
+    }
 
+  }
+  return subset;
 }
 
+console.log (`The artists born in the 20th century who also died then are ${get20s(artists)}`);
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
  *     (1) artists array
@@ -248,12 +275,18 @@ function get20s(/* Code here */){
  * 
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist(/*code here*/) {
-    /* code here */
-  }
-  
- 
+function removeArtist(myArray, myIndex) {
+  console.log (myArray[myIndex]);
+  myArray.splice(myIndex, 1);
+  return myArray.length; 
+}
 
+console.log(`The remaining number of artists is ${removeArtist(artists, 0)}`);
+
+// just to test it keeps removing people at the __array index__ location (and it does!)
+// console.log(`The remaining number of artists is ${removeArtist(artists, 11)}`);
+// console.log(`The remaining number of artists is ${removeArtist(artists, 11)}`);
+ 
 /**
 /* Task 6: Create a function called `addArtist` that can accept an object of information and add it to the artists array. Then, add a 21st artist to the array (you) with custom information!👩‍🎨👨‍🎨
 
@@ -267,12 +300,24 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 
 At the end, this function should return the new array with information added"*/
 
-function addArtist(/* Code here */){
+function addArtist(myArray, newArtist){
+  myArray.push(newArtist);
+  return myArray;
+}
+let newArtistInfo = {
+  id: 20,
+  "name": "Mark Rogowsky",
+  "years": "1967 - 2020",
+  "genre": "Abstract Web Design",
+  "nationality": "American",
+  "bio": "Born in Brooklyn, NY to the children of immigrants, Mark has taken his iconoclastic world vision to questionable heights. He currently is learning to code at Lambda School.",
+  "note": "No, he's not the skateboarder!",
+  "paintings": 101 //lol maybe in kindgergarten
+};
 
-    /* Code here */
+addArtist(artists, newArtistInfo );
 
-  }
-
+console.log(artists);
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
     (1) artists array 
@@ -281,12 +326,19 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(/* Code here */){
-
-  /* Code here */
-
+function lotsOfArt(myArray){
+  let prolific = [];
+  for (i = 0; i < myArray.length; i++)
+    if (myArray[i].paintings > 100) {
+      prolific.push(myArray[i].name);
+    }
+  return prolific;
 }
+// one on the array as touched above by the remove and add functions
+console.log (`Here are the artists with more than 100 paintings ${lotsOfArt (artists)}`);
 
+// one on the original array untouched by above functions
+console.log (`Here are the artists with more than 100 paintings ${lotsOfArt (arrayCopy)}`);
 
 
 // 🎨🎨 STRETCH 🎨🎨//
